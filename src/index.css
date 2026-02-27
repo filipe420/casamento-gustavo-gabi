@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 30 33% 98%;
+    --foreground: 20 10% 20%;
+
+    --card: 30 30% 97%;
+    --card-foreground: 20 10% 20%;
+
+    --popover: 30 33% 98%;
+    --popover-foreground: 20 10% 20%;
+
+    --primary: 350 30% 65%;
+    --primary-foreground: 30 33% 98%;
+
+    --secondary: 30 25% 92%;
+    --secondary-foreground: 20 10% 25%;
+
+    --muted: 30 20% 94%;
+    --muted-foreground: 20 8% 50%;
+
+    --accent: 38 60% 60%;
+    --accent-foreground: 30 33% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 30 20% 88%;
+    --input: 30 20% 88%;
+    --ring: 350 30% 65%;
+
+    --radius: 0.5rem;
+
+    --rose: 350 30% 65%;
+    --rose-light: 350 35% 90%;
+    --gold: 38 60% 60%;
+    --gold-light: 38 50% 88%;
+    --nude: 25 20% 85%;
+    --cream: 35 40% 95%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Montserrat', sans-serif;
+  }
+
+  .dark {
+    --background: 20 10% 10%;
+    --foreground: 30 20% 90%;
+    --card: 20 10% 12%;
+    --card-foreground: 30 20% 90%;
+    --popover: 20 10% 12%;
+    --popover-foreground: 30 20% 90%;
+    --primary: 350 30% 65%;
+    --primary-foreground: 30 33% 98%;
+    --secondary: 20 15% 18%;
+    --secondary-foreground: 30 20% 90%;
+    --muted: 20 15% 18%;
+    --muted-foreground: 30 10% 60%;
+    --accent: 38 60% 55%;
+    --accent-foreground: 30 33% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 20 15% 20%;
+    --input: 20 15% 20%;
+    --ring: 350 30% 65%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .font-body {
+    font-family: var(--font-body);
+  }
+  .text-gold {
+    color: hsl(var(--gold));
+  }
+  .bg-gold {
+    background-color: hsl(var(--gold));
+  }
+  .text-rose-wedding {
+    color: hsl(var(--rose));
+  }
+  .bg-rose-light {
+    background-color: hsl(var(--rose-light));
+  }
+  .bg-cream {
+    background-color: hsl(var(--cream));
+  }
+  .bg-nude {
+    background-color: hsl(var(--nude));
+  }
+  .bg-gold-light {
+    background-color: hsl(var(--gold-light));
+  }
+  .border-gold {
+    border-color: hsl(var(--gold));
+  }
+}
