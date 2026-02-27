@@ -3,7 +3,7 @@ import { Heart, Gift, CalendarHeart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import CountdownTimer from "@/components/CountdownTimer";
-import heroImage from "@/assets/hero-wedding.png";
+import heroImage from "@/assets/flores-lirio.avif";
 
 const Index = () => {
   return (
