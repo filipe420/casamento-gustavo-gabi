@@ -29,7 +29,7 @@ const Index = () => {
               Nós vamos nos casar
             </p>
             <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-semibold text-foreground leading-tight">
-              Ana <span className="text-primary">&</span> João
+              Gabriela <span className="text-primary">&</span> Gustavo
             </h1>
             <p className="mt-4 font-display text-lg md:text-xl text-muted-foreground italic">
               "O amor não se vê com os olhos, mas com o coração."
