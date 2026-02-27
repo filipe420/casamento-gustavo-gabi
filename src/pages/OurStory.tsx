@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import SectionTitle from "@/components/SectionTitle";
 import TimelineItem from "@/components/TimelineItem";
-import coupleImage from "@/assets/couple-story.png";
+import coupleImage from "@/assets/imagem-do-pedido.jpeg";
 
 const timeline = [
   {
