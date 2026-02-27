@@ -15,8 +15,8 @@
     --popover: 30 33% 98%;
     --popover-foreground: 20 10% 20%;
 
-    --primary: 350 30% 65%;
-    --primary-foreground: 30 33% 98%;
+  --primary: 91 26% 51%;
+  --primary-foreground: 0 0% 100%;
 
     --secondary: 30 25% 92%;
     --secondary-foreground: 20 10% 25%;
@@ -24,7 +24,7 @@
     --muted: 30 20% 94%;
     --muted-foreground: 20 8% 50%;
 
-    --accent: 38 60% 60%;
+  --accent: 38 60% 60%;
     --accent-foreground: 30 33% 98%;
 
     --destructive: 0 84.2% 60.2%;
@@ -32,12 +32,12 @@
 
     --border: 30 20% 88%;
     --input: 30 20% 88%;
-    --ring: 350 30% 65%;
+  --ring: 91 26% 51%;
 
     --radius: 0.5rem;
 
-    --rose: 350 30% 65%;
-    --rose-light: 350 35% 90%;
+  --rose: 91 26% 51%;
+  --rose-light: 91 22% 92%;
     --gold: 38 60% 60%;
     --gold-light: 38 50% 88%;
     --nude: 25 20% 85%;
@@ -63,19 +63,19 @@
     --card-foreground: 30 20% 90%;
     --popover: 20 10% 12%;
     --popover-foreground: 30 20% 90%;
-    --primary: 350 30% 65%;
-    --primary-foreground: 30 33% 98%;
+  --primary: 91 26% 51%;
+  --primary-foreground: 0 0% 100%;
     --secondary: 20 15% 18%;
     --secondary-foreground: 30 20% 90%;
     --muted: 20 15% 18%;
     --muted-foreground: 30 10% 60%;
-    --accent: 38 60% 55%;
+  --accent: 38 60% 55%;
     --accent-foreground: 30 33% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 20 15% 20%;
     --input: 20 15% 20%;
-    --ring: 350 30% 65%;
+  --ring: 91 26% 51%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
