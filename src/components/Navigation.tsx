@@ -19,9 +19,11 @@ const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <Link to="/" className="flex items-center gap-2 font-display text-xl md:text-2xl font-semibold text-foreground">
-            <Heart className="w-5 h-5 text-primary fill-primary" />
-            A & J
+          <Link
+            to="/"
+            className="flex items-center gap-2 font-display text-xl md:text-2xl font-semibold text-foreground"
+          >
+            <Heart className="w-5 h-5 text-primary fill-primary" />G & G
           </Link>
 
           {/* Desktop */}
@@ -31,7 +33,9 @@ const Navigation = () => {
                 key={link.to}
                 to={link.to}
                 className={`text-sm font-body tracking-wider uppercase transition-colors hover:text-primary ${
-                  location.pathname === link.to ? "text-primary font-medium" : "text-muted-foreground"
+                  location.pathname === link.to
+                    ? "text-primary font-medium"
+                    : "text-muted-foreground"
                 }`}
               >
                 {link.label}
@@ -66,7 +70,9 @@ const Navigation = () => {
                   to={link.to}
                   onClick={() => setIsOpen(false)}
                   className={`text-sm font-body tracking-wider uppercase py-2 transition-colors ${
-                    location.pathname === link.to ? "text-primary font-medium" : "text-muted-foreground"
+                    location.pathname === link.to
+                      ? "text-primary font-medium"
+                      : "text-muted-foreground"
                   }`}
                 >
                   {link.label}

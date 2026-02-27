@@ -28,7 +28,7 @@ const Index = () => {
             <p className="font-body text-sm uppercase tracking-[0.3em] text-muted-foreground mb-4">
               Nós vamos nos casar
             </p>
-            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-semibold text-foreground leading-tight">
+            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-semibold text-foreground leading-tight whitespace-nowrap">
               Gabriela <span className="text-primary">&</span> Gustavo
             </h1>
             <p className="mt-4 font-display text-lg md:text-xl text-muted-foreground italic">
@@ -63,13 +63,22 @@ const Index = () => {
             transition={{ delay: 1, duration: 0.6 }}
             className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Button asChild size="lg" className="font-body text-sm uppercase tracking-wider">
+            <Button
+              asChild
+              size="lg"
+              className="font-body text-sm uppercase tracking-wider"
+            >
               <Link to="/presenca">
                 <Heart className="w-4 h-4 mr-2" />
                 Confirmar Presença
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="font-body text-sm uppercase tracking-wider">
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="font-body text-sm uppercase tracking-wider"
+            >
               <Link to="/presentes">
                 <Gift className="w-4 h-4 mr-2" />
                 Lista de Presentes
@@ -92,8 +101,9 @@ const Index = () => {
               Celebre Conosco
             </h2>
             <p className="font-body text-muted-foreground leading-relaxed">
-              Com imenso prazer, convidamos vocês para celebrar o nosso casamento.
-              Será uma honra compartilhar este momento tão especial ao lado de quem amamos.
+              Com imenso prazer, convidamos vocês para celebrar o nosso
+              casamento. Será uma honra compartilhar este momento tão especial
+              ao lado de quem amamos.
             </p>
             <div className="mt-8 flex justify-center gap-12 text-center">
               {[
@@ -108,8 +118,12 @@ const Index = () => {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.15 }}
                 >
-                  <p className="font-display text-2xl font-semibold text-foreground">{item.value}</p>
-                  <p className="text-sm font-body text-muted-foreground mt-1">{item.label}</p>
+                  <p className="font-display text-2xl font-semibold text-foreground">
+                    {item.value}
+                  </p>
+                  <p className="text-sm font-body text-muted-foreground mt-1">
+                    {item.label}
+                  </p>
                 </motion.div>
               ))}
             </div>
