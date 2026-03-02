@@ -32,7 +32,7 @@ const Index = () => {
               Gabriela <span className="text-primary">&</span> Gustavo
             </h1>
             <p className="mt-4 font-display text-lg md:text-xl text-muted-foreground italic">
-              "O amor não se vê com os olhos, mas com o coração."
+              "O cordão de três dobras não se rompe com facilidade.
             </p>
           </motion.div>
 

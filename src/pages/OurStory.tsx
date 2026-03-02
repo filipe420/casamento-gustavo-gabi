@@ -5,20 +5,19 @@ import coupleImage from "@/assets/imagem-do-pedido.jpeg";
 
 const timeline = [
   {
-    date: "Janeiro 2020",
+    date: "Outubro de 2022",
     title: "Primeiro Encontro",
-    description: "Nos conhecemos numa cafeteria no centro da cidade. Um olhar, um sorriso, e tudo mudou.",
+    description: "Nos conhecemos no Castelão em dia de jogo. Um olhar, um sorriso, e tudo mudou.",
     imageUrl: coupleImage,
   },
   {
-    date: "Junho 2021",
-    title: "Primeiro 'Eu Te Amo'",
-    description: "Num pôr do sol inesquecível, as palavras vieram naturalmente. Soubemos que era pra sempre.",
+    date: "Foi em janeiro de 2023",
+    title: "Primeiro pedido de namoro",
+    description: "Ele me levou para jantar e, no meio da surpresa, fez o pedido que mudou tudo.",
   },
   {
-    date: "Março 2023",
     title: "Viagem dos Sonhos",
-    description: "Paris, a cidade do amor, foi o cenário perfeito para fortalecer ainda mais nossa história.",
+    description: "Nossa Eurotrip ainda é um sonho. Mas já sabemos que será um capítulo lindo da nossa história.",
   },
   {
     date: "Agosto 2025",

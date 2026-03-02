@@ -19,8 +19,8 @@ const details = [
   {
     icon: MapPin,
     title: "Local",
-    value: "Igreja Matriz de São João",
-    sub: "Rua das Flores, 123 — Centro",
+    value: "R. Luiz Paiva, 75",
+    sub: "Iparana, Caucaia - CE, 61627-090",
   },
   {
     icon: Shirt,
@@ -31,11 +31,13 @@ const details = [
 ];
 
 const EventDetails = () => {
+  const eventAddress = "R. Luiz Paiva, 75 - Iparana, Caucaia - CE, 61627-090";
+
   const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
-    "Casamento Ana & João"
+    "Casamento Gabriela & Gustavo"
   )}&dates=20261219T160000/20261220T020000&details=${encodeURIComponent(
     "Celebre conosco!"
-  )}&location=${encodeURIComponent("Igreja Matriz de São João, Rua das Flores, 123")}`;
+  )}&location=${encodeURIComponent(eventAddress)}`;
 
   return (
     <div className="min-h-screen pt-24 pb-16">
@@ -73,7 +75,7 @@ const EventDetails = () => {
             className="rounded-xl overflow-hidden border border-border shadow-sm mb-8"
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.1976734698493!2d-46.65429922466513!3d-23.561684363379354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAv.%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1690000000000!5m2!1spt-BR!2sbr"
+              src={`https://www.google.com/maps?q=${encodeURIComponent(eventAddress)}&output=embed`}
               width="100%"
               height="350"
               style={{ border: 0 }}
