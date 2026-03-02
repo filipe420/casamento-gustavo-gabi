@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Check } from "lucide-react";
+import { Send, Check, Settings } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import SectionTitle from "@/components/SectionTitle";
+import { sendRSVPEmail, getEmailConfig, RSVPData } from "@/lib/emailService";
 
 const RSVP = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -18,7 +20,7 @@ const RSVP = () => {
     guestNames: [] as string[],
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!form.name.trim() || !form.email.trim()) {
@@ -33,6 +35,27 @@ const RSVP = () => {
       if (hasEmptyGuest) {
         toast.error("Preencha o nome de todos os acompanhantes.");
         return;
+      }
+    }
+
+    // Preparar dados do RSVP
+    const rsvpData: RSVPData = {
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      attending: form.attending as "yes" | "no",
+      guests: form.guests,
+      guestNames: form.guestNames,
+    };
+
+    // Tentar enviar email
+    const emailConfig = getEmailConfig();
+    if (emailConfig?.destinationEmail) {
+      const emailSent = await sendRSVPEmail(rsvpData);
+      if (emailSent) {
+        toast.success("Email de confirmação enviado!");
+      } else if (emailConfig.emailServiceId) {
+        toast.warning("Confirmaçã registrada, mas houve erro no envio de email");
       }
     }
 
@@ -66,10 +89,20 @@ const RSVP = () => {
   return (
     <div className="min-h-screen pt-24 pb-16">
       <div className="container mx-auto px-4">
-        <SectionTitle
-          title="Confirme sua Presença"
-          subtitle="Será uma honra ter você conosco"
-        />
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <SectionTitle
+              title="Confirme sua Presença"
+              subtitle="Será uma honra ter você conosco"
+            />
+          </div>
+          <Link to="/admin-config">
+            <Button variant="outline" size="sm" className="font-body gap-2">
+              <Settings className="w-4 h-4" />
+              <span className="hidden sm:inline">Config. Email</span>
+            </Button>
+          </Link>
+        </div>
 
         <motion.form
           initial={{ opacity: 0, y: 20 }}

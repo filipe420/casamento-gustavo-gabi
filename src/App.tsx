@@ -11,6 +11,8 @@ import EventDetails from "./pages/EventDetails";
 import RSVP from "./pages/RSVP";
 import GiftList from "./pages/GiftList";
 import ThankYou from "./pages/ThankYou";
+import AdminConfig from "./pages/AdminConfig";
+import RSVPAdmin from "./pages/RSVPAdmin";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +31,8 @@ const App = () => (
           <Route path="/presenca" element={<RSVP />} />
           <Route path="/presentes" element={<GiftList />} />
           <Route path="/obrigado" element={<ThankYou />} />
+          <Route path="/admin-config" element={<AdminConfig />} />
+          <Route path="/admin-rsvps" element={<RSVPAdmin />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
