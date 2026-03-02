@@ -315,7 +315,7 @@ const PixContribution = () => {
                       if (cardErrors.number) setCardErrors({ ...cardErrors, number: undefined });
                     }}
                     placeholder="0000 0000 0000 0000"
-                    className={`mt-1 font-body font-mono ${cardErrors.number ? "border-red-500" : ""}`}
+                    className={`mt-1 font-mono ${cardErrors.number ? "border-red-500" : ""}`}
                     maxLength={19}
                   />
                   {cardErrors.number && (
@@ -353,7 +353,7 @@ const PixContribution = () => {
                         if (cardErrors.expiry) setCardErrors({ ...cardErrors, expiry: undefined });
                       }}
                       placeholder="MM/AA"
-                      className={`mt-1 font-body font-mono ${cardErrors.expiry ? "border-red-500" : ""}`}
+                      className={`mt-1 font-mono ${cardErrors.expiry ? "border-red-500" : ""}`}
                       maxLength={5}
                     />
                     {cardErrors.expiry && (
@@ -371,7 +371,7 @@ const PixContribution = () => {
                         if (cardErrors.cvv) setCardErrors({ ...cardErrors, cvv: undefined });
                       }}
                       placeholder="123"
-                      className={`mt-1 font-body font-mono ${cardErrors.cvv ? "border-red-500" : ""}`}
+                      className={`mt-1 font-mono ${cardErrors.cvv ? "border-red-500" : ""}`}
                       maxLength={4}
                       type="password"
                     />

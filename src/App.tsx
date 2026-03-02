@@ -13,6 +13,10 @@ import GiftList from "./pages/GiftList";
 import ThankYou from "./pages/ThankYou";
 import AdminConfig from "./pages/AdminConfig";
 import RSVPAdmin from "./pages/RSVPAdmin";
+import GalleryHome from "./pages/GalleryHome";
+import Gallery from "./pages/Gallery";
+import PhotoUpload from "./pages/PhotoUpload";
+import PhotoAdmin from "./pages/PhotoAdmin";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,6 +37,10 @@ const App = () => (
           <Route path="/obrigado" element={<ThankYou />} />
           <Route path="/admin-config" element={<AdminConfig />} />
           <Route path="/admin-rsvps" element={<RSVPAdmin />} />
+          <Route path="/galeria-home" element={<GalleryHome />} />
+          <Route path="/galeria" element={<Gallery />} />
+          <Route path="/upload" element={<PhotoUpload />} />
+          <Route path="/admin-fotos" element={<PhotoAdmin />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

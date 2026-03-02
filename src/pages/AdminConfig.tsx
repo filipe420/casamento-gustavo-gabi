@@ -112,7 +112,7 @@ const AdminConfig = () => {
                       setConfig({ ...config, emailServiceId: e.target.value })
                     }
                     placeholder="service_xxxxx"
-                    className="mt-1 font-body font-mono text-xs"
+                    className="mt-1 font-mono text-xs"
                   />
                   <Button
                     variant="outline"
@@ -144,7 +144,7 @@ const AdminConfig = () => {
                       setConfig({ ...config, emailTemplateId: e.target.value })
                     }
                     placeholder="template_xxxxx"
-                    className="mt-1 font-body font-mono text-xs"
+                    className="mt-1 font-mono text-xs"
                   />
                   <Button
                     variant="outline"
@@ -176,7 +176,7 @@ const AdminConfig = () => {
                       setConfig({ ...config, emailUserId: e.target.value })
                     }
                     placeholder="user_xxxxx"
-                    className="mt-1 font-body font-mono text-xs"
+                    className="mt-1 font-mono text-xs"
                   />
                   <Button
                     variant="outline"

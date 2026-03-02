@@ -9,6 +9,7 @@ const navLinks = [
   { to: "/evento", label: "Evento" },
   { to: "/presenca", label: "Confirmar Presença" },
   { to: "/presentes", label: "Presentes" },
+  { to: "/galeria-home", label: "Galeria" },
 ];
 
 const Navigation = () => {
