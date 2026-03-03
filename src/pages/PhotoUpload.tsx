@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import SectionTitle from "@/components/SectionTitle";
 import ImageUploader from "@/components/ImageUploader";
 import { toast } from "sonner";
+import { uploadImage } from "@/services/api";
 
 const PhotoUpload = () => {
   const navigate = useNavigate();
@@ -23,35 +24,14 @@ const PhotoUpload = () => {
     setIsUploading(true);
 
     try {
-      // Simulate upload - In production, this would upload to a server/storage
-      const newPhotos = await Promise.all(
-        files.map(async (file) => {
-          return new Promise<{ id: string; url: string; uploadedBy: string; likes: number }>((resolve) => {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-              resolve({
-                id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-                url: reader.result as string,
-                uploadedBy: uploaderName,
-                likes: 0,
-              });
-            };
-            reader.readAsDataURL(file);
-          });
-        })
-      );
-
-      // Store in localStorage (in production, send to backend)
-      const existingPhotos = JSON.parse(localStorage.getItem("weddingPhotos") || "[]");
-      const updatedPhotos = [...existingPhotos, ...newPhotos];
-      localStorage.setItem("weddingPhotos", JSON.stringify(updatedPhotos));
+      await Promise.all(files.map((file) => uploadImage(file, uploaderName)));
 
       setUploadSuccess(true);
       toast.success(`${files.length} ${files.length === 1 ? "foto enviada" : "fotos enviadas"} com sucesso!`);
 
       // Redirect to gallery after 2 seconds
       setTimeout(() => {
-        navigate("/galeria");
+        navigate("/gallery");
       }, 2000);
     } catch (error) {
       toast.error("Erro ao enviar fotos. Tente novamente.");

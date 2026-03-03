@@ -39,6 +39,7 @@ const App = () => (
           <Route path="/admin-rsvps" element={<RSVPAdmin />} />
           <Route path="/galeria-home" element={<GalleryHome />} />
           <Route path="/galeria" element={<Gallery />} />
+          <Route path="/gallery" element={<Gallery />} />
           <Route path="/upload" element={<PhotoUpload />} />
           <Route path="/admin-fotos" element={<PhotoAdmin />} />
           <Route path="*" element={<NotFound />} />

@@ -6,11 +6,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import SectionTitle from "@/components/SectionTitle";
 import PhotoGrid from "@/components/PhotoGrid";
+import { getGallery, type GalleryImage } from "@/services/api";
 
 interface Photo {
   id: string;
+  name: string;
   url: string;
-  uploadedBy?: string;
+  uploadedBy: string;
+  createdAt: string;
   likes?: number;
 }
 
@@ -20,16 +23,28 @@ const Gallery = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    // Simulate loading photos from storage
-    const loadPhotos = () => {
-      const storedPhotos = localStorage.getItem("weddingPhotos");
-      if (storedPhotos) {
-        setPhotos(JSON.parse(storedPhotos));
+    const loadPhotos = async () => {
+      try {
+        setLoading(true);
+        const galleryItems: GalleryImage[] = await getGallery();
+        setPhotos(
+          galleryItems.map((item) => ({
+            id: item.id,
+            name: item.name,
+            url: item.url,
+            uploadedBy: item.name,
+            createdAt: item.createdAt,
+            likes: 0,
+          }))
+        );
+      } catch {
+        setPhotos([]);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
 
-    setTimeout(loadPhotos, 800);
+    void loadPhotos();
   }, []);
 
   const handleLike = (id: string) => {
@@ -40,18 +55,10 @@ const Gallery = () => {
           : photo
       )
     );
-    
-    // Update localStorage
-    const updatedPhotos = photos.map((photo) =>
-      photo.id === id
-        ? { ...photo, likes: (photo.likes || 0) + 1 }
-        : photo
-    );
-    localStorage.setItem("weddingPhotos", JSON.stringify(updatedPhotos));
   };
 
   const filteredPhotos = photos.filter((photo) =>
-    photo.uploadedBy?.toLowerCase().includes(searchTerm.toLowerCase())
+    photo.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (

@@ -1,0 +1,27 @@
+{
+  "name": "wedding-gallery-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "firebase-admin": "^13.5.0",
+    "multer": "^1.4.5-lts.2",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^4.17.23",
+    "@types/multer": "^1.4.13",
+    "@types/node": "^22.16.5",
+    "typescript": "^5.8.3",
+    "tsx": "^4.20.3"
+  }
+}
