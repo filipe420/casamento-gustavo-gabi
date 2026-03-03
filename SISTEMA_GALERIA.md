@@ -1,255 +1,161 @@
-# Sistema de Galeria de Fotos
+# Sistema de Galeria (React + Node + Firebase) — Guia Completo
 
-## 📸 Visão Geral
+Este projeto já está integrado com backend Node/Express em TypeScript + Firebase Storage para upload e exibição de imagens na galeria.
 
-Sistema completo de galeria de fotos para o site de casamento, permitindo que convidados compartilhem suas fotografias do evento.
+## 1) Estrutura de pastas (atual)
 
-## 🗂️ Estrutura Criada
+### Raiz (frontend)
+- `src/services/api.ts`: cliente Axios da API
+- `src/pages/PhotoUpload.tsx`: envio de imagens para backend
+- `src/pages/Gallery.tsx`: busca e renderização da galeria via API
+- `src/App.tsx`: rotas (mantidas) e alias `/gallery`
+- `.env.example`: variável `VITE_API_BASE_URL`
+- `package.json`: scripts frontend e backend
 
-### Componentes
+### Backend
+- `backend/src/config/firebase.ts`: inicialização do Firebase Admin
+- `backend/src/services/storage.service.ts`: upload no Firebase Storage
+- `backend/src/controllers/upload.controller.ts`: POST `/api/upload`
+- `backend/src/controllers/gallery.controller.ts`: GET `/api/gallery`
+- `backend/src/routes/upload.routes.ts`: rota de upload
+- `backend/src/routes/gallery.routes.ts`: rota da galeria
+- `backend/src/store/gallery.store.ts`: armazenamento em memória (temporário)
+- `backend/src/app.ts`: CORS + rotas `/api`
+- `backend/src/server.ts`: bootstrap do servidor
+- `backend/.env.example`: variáveis do backend
 
-#### 1. **ImageUploader.tsx**
-- Upload de múltiplas imagens com drag & drop
-- Validação de formato (JPG, PNG, WEBP)
-- Limite de tamanho (10MB por foto)
-- Preview das imagens antes do upload
-- Contador de arquivos selecionados
+## 2) O que já está funcionando
 
-#### 2. **PhotoCard.tsx**
-- Card individual para cada foto
-- Botões de ação: Like, Download, Compartilhar
-- Exibição do nome de quem enviou
-- Contador de likes
-- Animações ao passar o mouse
+- Upload com validação de tipo: `jpg`, `png`, `webp`
+- Limite de tamanho: `10MB`
+- Upload para Firebase Storage com URL pública
+- Retorno do backend no formato:
 
-#### 3. **PhotoGrid.tsx**
-- Grid responsivo de fotos
-- Layout: 1 coluna (mobile) → 2 (tablet) → 3-4 (desktop)
-- Estado de loading com skeleton
-- Estado vazio com mensagem
-
-### Páginas
-
-#### 1. **GalleryHome.tsx** - `/galeria-home`
-Landing page da galeria com:
-- Apresentação do sistema
-- 3 cards de features (Ver, Compartilhar, Curtir)
-- CTA para enviar fotos
-- Animações com Framer Motion
-
-#### 2. **Gallery.tsx** - `/galeria`
-Galeria principal com:
-- Grid de todas as fotos
-- Busca por nome de quem enviou
-- Contadores (total de fotos)
-- Botão de filtros (preparado para futuro)
-- Sistema de likes
-
-#### 3. **PhotoUpload.tsx** - `/upload`
-Página de envio com:
-- Campo para nome do remetente
-- Componente ImageUploader integrado
-- Validações de formulário
-- Feedback de sucesso com redirecionamento
-- Loading durante upload
-
-#### 4. **PhotoAdmin.tsx** - `/admin-fotos`
-Painel administrativo com:
-- Estatísticas (total de fotos, likes, colaboradores)
-- Grid com todas as fotos
-- Botões de ação: visualizar, excluir
-- Exportar dados em JSON
-- Excluir todas as fotos
-- Modal de confirmação de exclusão
-- Preview em tela cheia
-
-## 🔄 Fluxo de Uso
-
-### Para Convidados
-
-1. **Acessar galeria**: `/galeria-home` → Ver apresentação
-2. **Ver fotos**: Clicar em "Ver Galeria" → `/galeria`
-3. **Enviar fotos**:
-   - Clicar em "Enviar Fotos" → `/upload`
-   - Digitar nome
-   - Arrastar ou selecionar fotos
-   - Confirmar upload
-   - Redirecionado para galeria
-
-### Para Administradores
-
-1. **Acessar admin**: Navegar para `/admin-fotos`
-2. **Visualizar estatísticas**: Ver métricas no topo
-3. **Gerenciar fotos**:
-   - Ver todas as fotos em grid
-   - Clicar para preview em tela cheia
-   - Excluir fotos individuais
-   - Exportar backup em JSON
-   - Limpar galeria completa
-
-## 💾 Armazenamento
-
-### LocalStorage
-
-Todas as fotos são armazenadas no `localStorage` do navegador:
-
-```javascript
-// Estrutura de uma foto
+```json
 {
-  id: "timestamp-randomid",
-  url: "data:image/jpeg;base64,...", // Base64 da imagem
-  uploadedBy: "Nome do Convidado",
-  likes: 0
+  "id": "uuid",
+  "name": "nome-do-enviador-ou-arquivo",
+  "url": "https://storage.googleapis.com/...",
+  "createdAt": "2026-03-03T00:00:00.000Z"
 }
-
-// Chave de armazenamento
-localStorage.getItem("weddingPhotos")
 ```
 
-### Migração para Backend (Futuro)
+- Gallery consumindo `GET /api/gallery` automaticamente
+- Rotas existentes preservadas (nenhuma removida)
+- Build de frontend e backend já validado
 
-Para produção, recomenda-se:
+## 3) Configuração passo a passo (perfeito)
 
-1. **Backend API**:
-   ```
-   POST /api/photos - Upload de foto
-   GET /api/photos - Listar fotos
-   PUT /api/photos/:id/like - Dar like
-   DELETE /api/photos/:id - Excluir foto
-   ```
+## Passo A — Frontend (raiz)
 
-2. **Storage**:
-   - AWS S3
-   - Cloudinary
-   - Firebase Storage
+1. Na raiz do projeto, instale dependências:
+   - `npm install`
 
-3. **Alterações necessárias**:
-   - Substituir localStorage por chamadas à API
-   - Implementar autenticação para admin
-   - Usar URLs reais em vez de Base64
-   - Adicionar paginação na galeria
+2. Crie arquivo `.env` na raiz com base em `.env.example`:
 
-## 🎨 Recursos Visuais
-
-### Animações
-
-- **Framer Motion** em todas as páginas
-- Fade in ao carregar
-- Scale animation nos cards
-- Hover effects
-- Loading spinners
-
-### Responsividade
-
-- **Mobile**: 1 coluna, botões fullwidth
-- **Tablet (sm)**: 2-3 colunas
-- **Desktop (lg)**: 3 colunas
-- **Desktop XL (xl)**: 4 colunas
-
-### Componentes UI (shadcn/ui)
-
-- Button com variantes
-- Input com labels
-- AlertDialog para exclusões
-- Toast notifications (sonner)
-
-## 🛡️ Validações
-
-### Upload
-
-- ✅ Formato: JPG, PNG, WEBP apenas
-- ✅ Tamanho: Máximo 10MB por arquivo
-- ✅ Quantidade: Máximo 10 fotos por vez
-- ✅ Nome obrigatório
-
-### Feedback
-
-- ❌ Erro: Toast vermelho
-- ✅ Sucesso: Toast verde
-- ⏳ Carregamento: Spinner + mensagem
-
-## 📱 Rotas Adicionadas
-
-```tsx
-<Route path="/galeria-home" element={<GalleryHome />} />
-<Route path="/galeria" element={<Gallery />} />
-<Route path="/upload" element={<PhotoUpload />} />
-<Route path="/admin-fotos" element={<PhotoAdmin />} />
+```env
+VITE_API_BASE_URL=http://localhost:3001
 ```
 
-## 🔗 Navegação
+3. Rodar frontend:
+   - `npm run dev`
 
-### Links Internos
+Frontend sobe por padrão em `http://localhost:5173`.
 
-- GalleryHome → Gallery: "Ver Galeria"
-- GalleryHome → Upload: "Enviar Fotos"
-- Gallery → Upload: Botão no header
-- Upload → Gallery: Redirect automático após sucesso
+## Passo B — Backend (`backend/`)
 
-### Adicionar ao Menu Principal
+1. Entre na pasta backend:
+   - `cd backend`
 
-Para incluir no Navigation.tsx:
+2. Instale dependências:
+   - `npm install`
 
-```tsx
-{ name: "Galeria", href: "/galeria-home" }
+3. Crie `backend/.env` com base em `backend/.env.example`.
+
+Exemplo:
+
+```env
+PORT=3001
+FRONTEND_URL=http://localhost:5173
+FIREBASE_PROJECT_ID=seu-project-id
+FIREBASE_CLIENT_EMAIL=firebase-adminsdk-xxxx@seu-projeto.iam.gserviceaccount.com
+FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nSUA_CHAVE\n-----END PRIVATE KEY-----\n"
+FIREBASE_STORAGE_BUCKET=seu-projeto.appspot.com
 ```
 
-## 📋 Checklist de Produção
+4. Rodar backend:
+   - `npm run dev`
 
-Antes de fazer deploy:
+Backend sobe em `http://localhost:3001`.
 
-- [ ] Implementar backend para armazenamento real
-- [ ] Adicionar autenticação no admin
-- [ ] Otimizar imagens (compressão, thumbnails)
-- [ ] Adicionar paginação na galeria
-- [ ] Implementar filtros avançados
-- [ ] Configurar CDN para imagens
-- [ ] Adicionar rate limiting no upload
-- [ ] Implementar moderação de conteúdo
-- [ ] Testar em dispositivos reais
-- [ ] Adicionar analytics
+## Passo C — Firebase (console)
 
-## 🎯 Funcionalidades Futuras
+1. Abra Firebase Console e selecione seu projeto.
+2. Vá em **Project Settings** > **Service Accounts** > **Generate new private key**.
+3. Use os dados do JSON para preencher variáveis no `backend/.env`.
+4. Em **Storage**, habilite o bucket.
+5. Configure regras do Storage conforme necessidade do projeto.
 
-### Curto Prazo
+## 4) Como iniciar tudo rapidamente
 
-- Filtros por data de upload
-- Ordenação (mais recentes, mais curtidas)
-- Comentários nas fotos
-- Tags/álbuns
+- Terminal 1 (raiz): `npm run dev`
+- Terminal 2 (raiz): `npm run dev:backend`
 
-### Longo Prazo
+Scripts úteis na raiz:
+- `npm run dev:frontend`
+- `npm run dev:backend`
+- `npm run build`
+- `npm run build:backend`
 
-- Reconhecimento facial
-- Álbuns compartilhados
-- Timeline de eventos
-- Slideshow automático
-- Download em massa (ZIP)
+## 5) Fluxo de uso final
 
-## 💡 Dicas de Uso
+1. Usuário acessa `/upload`
+2. Seleciona imagens (até 10MB, jpg/png/webp)
+3. Frontend envia `FormData` para `POST /api/upload`
+4. Backend envia arquivo ao Firebase Storage
+5. Backend devolve URL pública e salva item em memória
+6. Página `/galeria` ou `/gallery` carrega `GET /api/gallery`
+7. Grid responsivo renderiza imagens automaticamente
 
-### Performance
+## 6) Endpoints da API
 
-- LocalStorage tem limite de ~5-10MB
-- Base64 aumenta ~33% o tamanho
-- Para muitas fotos, use backend real
+- `POST /api/upload`
+  - `multipart/form-data`
+  - campo obrigatório: `image`
+  - campo opcional: `uploaderName`
 
-### UX
+- `GET /api/gallery`
+  - retorna lista de imagens em memória
 
-- Sempre mostre feedback visual
-- Preview antes de confirmar upload
-- Confirme ações destrutivas
-- Loading states em todas ações assíncronas
+- `GET /health`
+  - status do backend
 
-### Manutenção
+## 7) Responsividade aplicada
 
-- Backup regular do localStorage
-- Exportar dados periodicamente via admin
-- Monitorar quantidade de fotos
-- Limpar fotos duplicadas ou inapropriadas
+A página Gallery já segue o padrão visual atual:
+- Mobile: 1 coluna
+- Tablet: 2–3 colunas
+- Desktop: 4+ colunas
+
+Sem criação de novo sistema de estilos, usando o padrão Tailwind já existente.
+
+## 8) Observações importantes de produção
+
+- Hoje a lista da galeria está em memória no backend.
+- Ao reiniciar o backend, os itens em memória são perdidos (as imagens continuam no Firebase).
+- Próximo passo recomendado: persistir metadados em banco (Firestore, PostgreSQL, etc.).
+
+## 9) Checklist de verificação (100%)
+
+- [ ] `.env` da raiz criado com `VITE_API_BASE_URL`
+- [ ] `backend/.env` criado com credenciais Firebase válidas
+- [ ] Frontend rodando em `:5173`
+- [ ] Backend rodando em `:3001`
+- [ ] Upload em `/upload` funcionando
+- [ ] Galeria em `/galeria` e `/gallery` carregando imagens
+- [ ] `GET /health` responde `{ "status": "ok" }`
+- [ ] `npm run build` e `npm run build:backend` sem erro
 
 ---
 
-**Criado em**: ${new Date().toLocaleDateString('pt-BR')}
-**Versão**: 1.0.0
-**Status**: ✅ Pronto para uso
+Status atual: integração concluída e operacional, faltando apenas preencher credenciais reais do Firebase no ambiente local para funcionamento completo em runtime.

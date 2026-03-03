@@ -5,7 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:frontend": "vite",
+    "dev:backend": "npm --prefix backend run dev",
     "build": "vite build",
+    "build:backend": "npm --prefix backend run build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
